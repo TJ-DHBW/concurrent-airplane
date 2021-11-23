@@ -13,14 +13,14 @@ public class TaskLogger {
     private static final Logger logger;
 
     static {
-        logger = Logger.getLogger("LoggerTask" + Configuration.instance.taskToRun);
+        logger = Logger.getLogger("LoggerTask" + Configuration.instance.taskToRun.getNumber());
         // We don't want console output.
         for (Handler handler : logger.getHandlers()) {
             logger.removeHandler(handler);
         }
         FileHandler fh;
         try {
-            fh = new FileHandler("scenario_" + padLeft(Configuration.instance.taskToRun, 2) + ".log");
+            fh = new FileHandler("scenario_" + padLeft(Configuration.instance.taskToRun.getNumber(), 2) + ".log");
         } catch (IOException e) {
             throw new RuntimeException("Was not able to access the logging file.");
         }
