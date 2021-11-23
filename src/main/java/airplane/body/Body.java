@@ -6,6 +6,8 @@ public class Body {
     private Cabin cabin;
     private CentralUnit centralUnit;
     private ArrayList<AntiCollisionLight> antiCollisionLights;
+    private ArrayList<Engine> engines;
+    private ArrayList<EntryDoor> entryDoors;
 
     public Body() {
         cabin = new Cabin.CabinBuilder().setRows().createCabin();
@@ -13,6 +15,15 @@ public class Body {
         antiCollisionLights = new ArrayList<>();
         antiCollisionLights.add(new AntiCollisionLight());
         antiCollisionLights.add(new AntiCollisionLight());
+
+        entryDoors = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            entryDoors.add(new EntryDoor(i + 1));
+        }
+
+        engines = new ArrayList<>();
+        engines.add(new Engine(1));
+        engines.add(new Engine(2));
     }
 
 
@@ -34,6 +45,14 @@ public class Body {
 
     public ArrayList<AntiCollisionLight> getAntiCollisionLights() {
         return antiCollisionLights;
+    }
+
+    public ArrayList<Engine> getEngines() {
+        return engines;
+    }
+
+    public ArrayList<EntryDoor> getEntryDoors() {
+        return entryDoors;
     }
 
     public void setAntiCollisionLights(ArrayList<AntiCollisionLight> antiCollisionLights) {
