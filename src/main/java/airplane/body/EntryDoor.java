@@ -11,8 +11,9 @@ public class EntryDoor implements Runnable {
     private boolean isOpen = true;
     private int id;
 
-    public EntryDoor(int id) {
+    public EntryDoor(int id, CyclicBarrier barrier) {
         this.id = id;
+        this.cyclicBarrier = barrier;
     }
 
     public void closeDoor() throws InterruptedException {

@@ -22,8 +22,7 @@ public class Task1 {
     */
 
     public static void run() throws InterruptedException {
-        //TODO Task 1
-        Airplane airplane = new Airplane();
+        Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
         BoardingClass.bordAirplane(airplane);
 
         ArrayList<HumanoidRobot> robots = new ArrayList<>();
@@ -33,33 +32,13 @@ public class Task1 {
         Counter counter = airplane.getBody().getCentralUnit().getCounter();
         Cabin cabin = airplane.getBody().getCabin();
 
-        Thread thread01 = new Thread(() -> {
-            robots.get(0).countPassengers(counter, cabin, 1, 3);
-        });
-
-        Thread thread02 = new Thread(() -> {
-            robots.get(1).countPassengers(counter, cabin, 2, 6);
-        });
-
-        Thread thread03 = new Thread(() -> {
-            robots.get(2).countPassengers(counter, cabin, 7, 8);
-        });
-
-        Thread thread04 = new Thread(() -> {
-            robots.get(3).countPassengers(counter, cabin, 12, 15);
-        });
-
-        Thread thread05 = new Thread(() -> {
-            robots.get(4).countPassengers(counter, cabin, 16, 26);
-        });
-
-        Thread thread06 = new Thread(() -> {
-            robots.get(5).countPassengers(counter, cabin, 27, 34);
-        });
-
-        Thread thread07 = new Thread(() -> {
-            robots.get(6).countPassengers(counter, cabin, 35, 42);
-        });
+        Thread thread01 = new Thread(() -> robots.get(0).countPassengers(counter, cabin, 1, 3));
+        Thread thread02 = new Thread(() -> robots.get(1).countPassengers(counter, cabin, 4, 6));
+        Thread thread03 = new Thread(() -> robots.get(2).countPassengers(counter, cabin, 7, 8));
+        Thread thread04 = new Thread(() -> robots.get(3).countPassengers(counter, cabin, 12, 15));
+        Thread thread05 = new Thread(() -> robots.get(4).countPassengers(counter, cabin, 16, 26));
+        Thread thread06 = new Thread(() -> robots.get(5).countPassengers(counter, cabin, 27, 34));
+        Thread thread07 = new Thread(() -> robots.get(6).countPassengers(counter, cabin, 35, 42));
 
         thread01.start();
         thread02.start();

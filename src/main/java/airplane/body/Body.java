@@ -1,29 +1,23 @@
 package airplane.body;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Body {
     private Cabin cabin;
     private CentralUnit centralUnit;
-    private ArrayList<AntiCollisionLight> antiCollisionLights;
-    private ArrayList<Engine> engines;
-    private ArrayList<EntryDoor> entryDoors;
+    private ArrayList<AntiCollisionLight> antiCollisionLights = new ArrayList<>();
+    private ArrayList<Engine> engines = new ArrayList<>();
+    private ArrayList<EntryDoor> entryDoors = new ArrayList<>();
+    private ArrayList<LandingGear> landingGears = new ArrayList<>();
 
-    public Body() {
-        cabin = new Cabin.CabinBuilder().setRows().createCabin();
-        centralUnit = new CentralUnit();
-        antiCollisionLights = new ArrayList<>();
-        antiCollisionLights.add(new AntiCollisionLight());
-        antiCollisionLights.add(new AntiCollisionLight());
-
-        entryDoors = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            entryDoors.add(new EntryDoor(i + 1));
-        }
-
-        engines = new ArrayList<>();
-        engines.add(new Engine(1));
-        engines.add(new Engine(2));
+    public Body(Cabin cabin, CentralUnit centralUnit, AntiCollisionLight[] antiCollisionLights, EntryDoor[] entryDoors, Engine[] engines, LandingGear[] landingGears) {
+        this.cabin = cabin;
+        this.centralUnit = centralUnit;
+        this.antiCollisionLights.addAll(Arrays.asList(antiCollisionLights));
+        this.entryDoors.addAll(Arrays.asList(entryDoors));
+        this.engines.addAll(Arrays.asList(engines));
+        this.landingGears.addAll(Arrays.asList(landingGears));
     }
 
 
@@ -57,5 +51,9 @@ public class Body {
 
     public void setAntiCollisionLights(ArrayList<AntiCollisionLight> antiCollisionLights) {
         this.antiCollisionLights = antiCollisionLights;
+    }
+
+    public ArrayList<LandingGear> getLandingGears() {
+        return landingGears;
     }
 }

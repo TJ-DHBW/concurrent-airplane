@@ -11,8 +11,9 @@ public class Engine implements Runnable {
     private boolean hasStarted = false;
     private CyclicBarrier cyclicBarrier;
 
-    public Engine(int id) {
+    public Engine(int id, CyclicBarrier barrier) {
         this.id = id;
+        this.cyclicBarrier = barrier;
     }
 
     public void startEngine() throws InterruptedException {

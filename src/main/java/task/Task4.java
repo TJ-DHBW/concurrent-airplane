@@ -1,11 +1,6 @@
 package task;
 
 import airplane.Airplane;
-import airplane.body.EntryDoor;
-import util.TaskLogger;
-
-import java.util.ArrayList;
-import java.util.concurrent.CyclicBarrier;
 
 public class Task4 {
 
@@ -19,33 +14,8 @@ public class Task4 {
      */
 
     public static void run() {
-        Airplane airplane = new Airplane();
+        Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
 
-        CyclicBarrier cyclicBarrier01 = new CyclicBarrier(4, () -> {
-            CyclicBarrier cyclicBarrier02 = new CyclicBarrier(2, () -> {
-                TaskLogger.getLogger().info("Ready for taxi");
-            });
-            airplane.getBody().getEngines().get(0).setCyclicBarrier(cyclicBarrier02);
-            airplane.getBody().getEngines().get(1).setCyclicBarrier(cyclicBarrier02);
-            Thread engine01 = new Thread(airplane.getBody().getEngines().get(0));
-            engine01.start();
-            Thread engine02 = new Thread(airplane.getBody().getEngines().get(1));
-            engine02.start();
-        });
-
-        ArrayList<EntryDoor> doors = airplane.getBody().getEntryDoors();
-        for (EntryDoor door : doors) {
-            door.setCyclicBarrier(cyclicBarrier01);
-        }
-
-        Thread threadDoor01 = new Thread(doors.get(0));
-        Thread threadDoor02 = new Thread(doors.get(1));
-        Thread threadDoor03 = new Thread(doors.get(2));
-        Thread threadDoor04 = new Thread(doors.get(3));
-
-        threadDoor01.start();
-        threadDoor02.start();
-        threadDoor03.start();
-        threadDoor04.start();
+        airplane.getBody().getEntryDoors().forEach(door -> new Thread(door).start());
     }
 }

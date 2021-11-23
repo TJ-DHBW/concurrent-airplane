@@ -1,5 +1,8 @@
 package task;
 
+import airplane.Airplane;
+import airplane.wing.Flap;
+
 public class Task6 {
 
     /*
@@ -10,7 +13,11 @@ public class Task6 {
     3 Sekunden (zufallsgesteuert).
      */
 
+    // TODO Look at this again. The timing is reeeeeeally weird.
     public static void run() {
-        // TODO Task6
+        Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
+
+        airplane.getWings().forEach(wing -> wing.getFlaps().forEach(Flap::run));
+        airplane.getBody().getLandingGears().forEach(Thread::start);
     }
 }

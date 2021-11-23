@@ -12,9 +12,9 @@ public class HumanoidRobot {
         this.id = id;
     }
 
-    public void countPassengers(Counter counter, Cabin cabin, int smallestRowNumber, int highestRowNumber) {
+    public void countPassengers(Counter counter, Cabin cabin, int minRow, int maxRow) {
         for (Row row : cabin.getRows()) {
-            if (row.getRowNumber() >= smallestRowNumber && row.getRowNumber() <= highestRowNumber) {
+            if (row.getRowNumber() >= minRow && row.getRowNumber() <= maxRow) {
                 for (Seat seat : row.getSeats()) {
                     if (seat.getPassenger() != null) {
                         counter.passengerFound();

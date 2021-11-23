@@ -18,7 +18,7 @@ public class Task2 {
      */
 
     public static void run() throws InterruptedException {
-        Airplane airplane = new Airplane();
+        Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
         ExecutorService execService = Executors.newFixedThreadPool(2);
 
         try {
