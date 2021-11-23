@@ -5,7 +5,7 @@ import task.*;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         switch (Configuration.instance.taskToRun) {
             case TASK1:
                 Task1.run();

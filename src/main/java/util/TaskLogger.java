@@ -5,7 +5,6 @@ import config.Configuration;
 import java.io.IOException;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Locale;
 import java.util.logging.*;
 
@@ -27,8 +26,7 @@ public class TaskLogger {
         fh.setFormatter(new SimpleFormatter() {
             @Override
             public String format(LogRecord record) {
-                // TODO The DateTime format might have to be adjusted.
-                DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMANY).withZone(ZoneId.systemDefault());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy, HH:mm:ss,SSS").withLocale(Locale.GERMANY).withZone(ZoneId.systemDefault());
                 return "[" + record.getLevel() + "] " + formatter.format(record.getInstant()) + " - " + record.getMessage() + "\n\n";
             }
         });
