@@ -14,4 +14,8 @@ public class Row {
     public ArrayList<Seat> getSeats() {
         return seats;
     }
+
+    public int getRowNumber() {
+        return rowNumber;
+    }
 }
