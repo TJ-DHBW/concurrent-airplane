@@ -3,43 +3,34 @@ package airplane.body;
 import java.util.ArrayList;
 
 public class Cabin {
-    private ArrayList<Row> businessClass;
-    private ArrayList<Row> premiumEconomyClass;
-    private ArrayList<Row> economyClass;
+    private ArrayList<Row> rows;
 
     public Cabin(CabinBuilder builder) {
-        this.businessClass = builder.businessClass;
-        this.premiumEconomyClass = builder.premiumEconomyClass;
-        this.economyClass = builder.economyClass;
+        this.rows = builder.rows;
+    }
+
+    public ArrayList<Row> getRows() {
+        return rows;
+    }
+
+    public void setRows(ArrayList<Row> rows) {
+        this.rows = rows;
     }
 
     public static class CabinBuilder {
-        private ArrayList<Row> businessClass;
-        private ArrayList<Row> premiumEconomyClass;
-        private ArrayList<Row> economyClass;
+        private ArrayList<Row> rows;
 
-        public CabinBuilder setBusinessClass() {
-            this.businessClass = new ArrayList<>();
+        public CabinBuilder setRows() {
+            this.rows = new ArrayList<>();
             Character[] seatLettersBusiness = {'A', 'C', 'D', 'G', 'H', 'K'};
-            this.businessClass = createClassSeating(SeatClass.business, 1, 8, seatLettersBusiness);
-            return this;
-        }
-
-
-        public CabinBuilder setPremiumEconomyClass() {
-            this.premiumEconomyClass = new ArrayList<>();
+            rows.addAll(createClassSeating(SeatClass.business, 1, 8, seatLettersBusiness));
             Character[] seatLettersPremiumEconomy = {'A', 'C', 'D', 'E', 'G', 'H', 'K'};
-            this.premiumEconomyClass = createClassSeating(SeatClass.premiumEconomy, 12, 12, seatLettersPremiumEconomy);
-            this.premiumEconomyClass.addAll(createClassSeating(SeatClass.premiumEconomy, 14, 15, seatLettersPremiumEconomy));
-            return this;
-        }
-
-        public CabinBuilder setEconomyClass() {
-            this.economyClass = economyClass;
+            rows.addAll(createClassSeating(SeatClass.premiumEconomy, 12, 12, seatLettersPremiumEconomy));
+            rows.addAll(createClassSeating(SeatClass.premiumEconomy, 14, 15, seatLettersPremiumEconomy));
             Character[] seatLettersEconomyLeg = {'A', 'C', 'D', 'E', 'G', 'H', 'K'};
-            economyClass.addAll(createClassSeating(SeatClass.premiumEconomy, 16, 16, seatLettersEconomyLeg));
+            rows.addAll(createClassSeating(SeatClass.premiumEconomy, 16, 16, seatLettersEconomyLeg));
             Character[] seatLettersEconomy = {'A', 'B', 'C', 'D', 'E', 'G', 'H', 'J', 'K'};
-            economyClass.addAll(createClassSeating(SeatClass.premiumEconomy, 18, 42, seatLettersEconomy));
+            rows.addAll(createClassSeating(SeatClass.premiumEconomy, 18, 42, seatLettersEconomy));
             return this;
         }
 
@@ -60,4 +51,5 @@ public class Cabin {
             return rows;
         }
     }
+
 }

@@ -8,6 +8,7 @@ public class Row {
 
     public Row(int rowNumber) {
         this.rowNumber = rowNumber;
+        this.seats = new ArrayList<>();
     }
 
     public ArrayList<Seat> getSeats() {

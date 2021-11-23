@@ -15,4 +15,20 @@ public class Airplane {
         wings.add(new Wing());
         wings.add(new Wing());
     }
+
+    public Body getBody() {
+        return body;
+    }
+
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    public ArrayList<Wing> getWings() {
+        return wings;
+    }
+
+    public void setWings(ArrayList<Wing> wings) {
+        this.wings = wings;
+    }
 }
