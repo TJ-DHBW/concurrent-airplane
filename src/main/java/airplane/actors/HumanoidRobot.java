@@ -6,7 +6,7 @@ import airplane.body.Seat;
 import util.TaskLogger;
 
 public class HumanoidRobot {
-    private int id;
+    private final int id;
 
     public HumanoidRobot(int id) {
         this.id = id;

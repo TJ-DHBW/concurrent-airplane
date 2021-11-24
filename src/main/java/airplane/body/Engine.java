@@ -9,14 +9,14 @@ import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
 
 public class Engine implements Runnable {
-    private int id;
+    private final int id;
     private boolean hasStarted = false;
     private CyclicBarrier cyclicBarrier;
     private int rotationSpeed;
-    private int rotationSpeedReadyForDeparture = 500;
-    private int rotationSpeedTrustSet = 2400;
-    private int rotationSpeedV1 = 4400;
-    private int rotationSpeedClimb = 6000;
+    private final int rotationSpeedReadyForDeparture = 500;
+    private final int rotationSpeedTrustSet = 2400;
+    private final int rotationSpeedV1 = 4400;
+    private final int rotationSpeedClimb = 6000;
 
     public Engine(int id, CyclicBarrier barrier) {
         this.id = id;
@@ -29,10 +29,6 @@ public class Engine implements Runnable {
         Thread.sleep(1000 * (timeToStart + 1));
         hasStarted = true;
         TaskLogger.getLogger().info("Engine " + id + " has started");
-    }
-
-    public void setCyclicBarrier(CyclicBarrier cyclicBarrier) {
-        this.cyclicBarrier = cyclicBarrier;
     }
 
     public void readyForDeparture() throws InterruptedException {

@@ -3,8 +3,8 @@ package airplane.body;
 import java.util.ArrayList;
 
 public class Row {
-    private int rowNumber;
-    private ArrayList<Seat> seats;
+    private final int rowNumber;
+    private final ArrayList<Seat> seats;
 
     public Row(int rowNumber) {
         this.rowNumber = rowNumber;

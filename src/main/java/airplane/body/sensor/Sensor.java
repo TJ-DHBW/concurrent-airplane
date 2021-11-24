@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Sensor implements Runnable {
     private SensorStatus sensorStatus;
-    private Semaphore semaphore;
-    private CentralUnit centralUnit;
-    private int id;
+    private final Semaphore semaphore;
+    private final CentralUnit centralUnit;
+    private final int id;
 
     public Sensor(int id, Semaphore semaphore, CentralUnit centralUnit) {
         this.id = id;

@@ -10,11 +10,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CentralUnit implements Runnable {
     private final Counter counter;
-    private AtomicInteger countMessageNormal = new AtomicInteger();
-    private AtomicInteger countMessageWarning = new AtomicInteger();
-    private AtomicInteger countMessageAlarm = new AtomicInteger();
-    private Semaphore semaphore;
-    private int numberOfMessages = 0;
+    private final AtomicInteger countMessageNormal = new AtomicInteger();
+    private final AtomicInteger countMessageWarning = new AtomicInteger();
+    private final AtomicInteger countMessageAlarm = new AtomicInteger();
+    private final Semaphore semaphore;
     private Airplane airplane;
 
     public CentralUnit(Counter counter, Semaphore semaphore) {
@@ -68,10 +67,6 @@ public class CentralUnit implements Runnable {
 
     public void setAirplane(Airplane airplane) {
         this.airplane = airplane;
-    }
-
-    public Semaphore getSemaphore() {
-        return semaphore;
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.concurrent.CyclicBarrier;
 public class EntryDoor implements Runnable {
     private CyclicBarrier cyclicBarrier;
     private boolean isOpen = true;
-    private int id;
+    private final int id;
 
     public EntryDoor(int id, CyclicBarrier barrier) {
         this.id = id;
@@ -22,10 +22,6 @@ public class EntryDoor implements Runnable {
         Thread.sleep(1000 * (timeToClose + 1));
         isOpen = false;
         TaskLogger.getLogger().info("EntryDoor " + id + " is now closed");
-    }
-
-    public void setCyclicBarrier(CyclicBarrier cyclicBarrier) {
-        this.cyclicBarrier = cyclicBarrier;
     }
 
     @Override

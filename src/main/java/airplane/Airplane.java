@@ -27,16 +27,8 @@ public class Airplane {
         return body;
     }
 
-    public void setBody(Body body) {
-        this.body = body;
-    }
-
     public ArrayList<Wing> getWings() {
         return wings;
-    }
-
-    public void setWings(ArrayList<Wing> wings) {
-        this.wings = wings;
     }
 
     public static class AirbusA350_900Factory {

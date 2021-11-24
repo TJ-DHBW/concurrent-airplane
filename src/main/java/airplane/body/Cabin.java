@@ -13,10 +13,6 @@ public class Cabin {
         return rows;
     }
 
-    public void setRows(ArrayList<Row> rows) {
-        this.rows = rows;
-    }
-
     // TODO Review this Factory
     public static class AirbusA350_900CabinFactory {
         private ArrayList<Row> createRows() {

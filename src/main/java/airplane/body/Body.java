@@ -9,11 +9,11 @@ public class Body {
     private Cabin cabin;
     private CentralUnit centralUnit;
     private ArrayList<AntiCollisionLight> antiCollisionLights = new ArrayList<>();
-    private ArrayList<Engine> engines = new ArrayList<>();
-    private ArrayList<EntryDoor> entryDoors = new ArrayList<>();
-    private ArrayList<LandingGear> landingGears = new ArrayList<>();
-    private Radar radar;
-    private Processor processor;
+    private final ArrayList<Engine> engines = new ArrayList<>();
+    private final ArrayList<EntryDoor> entryDoors = new ArrayList<>();
+    private final ArrayList<LandingGear> landingGears = new ArrayList<>();
+    private final Radar radar;
+    private final Processor processor;
     private ArrayList<Sensor> sensors = new ArrayList<>();
 
     public Body(Cabin cabin, CentralUnit centralUnit, AntiCollisionLight[] antiCollisionLights, EntryDoor[] entryDoors, Engine[] engines, LandingGear[] landingGears, Radar radar, Processor processor, ArrayList<Sensor> sensors) {
@@ -33,16 +33,8 @@ public class Body {
         return cabin;
     }
 
-    public void setCabin(Cabin cabin) {
-        this.cabin = cabin;
-    }
-
     public CentralUnit getCentralUnit() {
         return centralUnit;
-    }
-
-    public void setCentralUnit(CentralUnit centralUnit) {
-        this.centralUnit = centralUnit;
     }
 
     public ArrayList<AntiCollisionLight> getAntiCollisionLights() {
@@ -55,10 +47,6 @@ public class Body {
 
     public ArrayList<EntryDoor> getEntryDoors() {
         return entryDoors;
-    }
-
-    public void setAntiCollisionLights(ArrayList<AntiCollisionLight> antiCollisionLights) {
-        this.antiCollisionLights = antiCollisionLights;
     }
 
     public ArrayList<LandingGear> getLandingGears() {

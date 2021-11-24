@@ -14,14 +14,6 @@ public class Seat {
         this.rowNumber = rowNumber;
     }
 
-    public SeatClass getSeatClass() {
-        return seatClass;
-    }
-
-    public void setSeatClass(SeatClass seatClass) {
-        this.seatClass = seatClass;
-    }
-
     public Passenger getPassenger() {
         return passenger;
     }
@@ -30,19 +22,4 @@ public class Seat {
         this.passenger = passenger;
     }
 
-    public String getSeatLetter() {
-        return seatLetter;
-    }
-
-    public void setSeatLetter(String seatLetter) {
-        this.seatLetter = seatLetter;
-    }
-
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    public void setRowNumber(int rowNumber) {
-        this.rowNumber = rowNumber;
-    }
 }
