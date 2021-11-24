@@ -10,14 +10,18 @@ public class Body {
     private ArrayList<Engine> engines = new ArrayList<>();
     private ArrayList<EntryDoor> entryDoors = new ArrayList<>();
     private ArrayList<LandingGear> landingGears = new ArrayList<>();
+    private Radar radar;
+    private Processor processor;
 
-    public Body(Cabin cabin, CentralUnit centralUnit, AntiCollisionLight[] antiCollisionLights, EntryDoor[] entryDoors, Engine[] engines, LandingGear[] landingGears) {
+    public Body(Cabin cabin, CentralUnit centralUnit, AntiCollisionLight[] antiCollisionLights, EntryDoor[] entryDoors, Engine[] engines, LandingGear[] landingGears, Radar radar, Processor processor) {
         this.cabin = cabin;
         this.centralUnit = centralUnit;
         this.antiCollisionLights.addAll(Arrays.asList(antiCollisionLights));
         this.entryDoors.addAll(Arrays.asList(entryDoors));
         this.engines.addAll(Arrays.asList(engines));
         this.landingGears.addAll(Arrays.asList(landingGears));
+        this.radar = radar;
+        this.processor = processor;
     }
 
 
@@ -55,5 +59,13 @@ public class Body {
 
     public ArrayList<LandingGear> getLandingGears() {
         return landingGears;
+    }
+
+    public Radar getRadar() {
+        return radar;
+    }
+
+    public Processor getProcessor() {
+        return processor;
     }
 }

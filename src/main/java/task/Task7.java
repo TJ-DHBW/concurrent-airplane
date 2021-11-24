@@ -1,5 +1,7 @@
 package task;
 
+import airplane.Airplane;
+
 public class Task7 {
 
     /*
@@ -15,6 +17,9 @@ public class Task7 {
      */
 
     public static void run() {
-        // TODO Task7
+        Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
+
+        new Thread(airplane.getBody().getRadar()::runTenTimes).start();
+        new Thread(airplane.getBody().getProcessor()::runWithTimeout).start();
     }
 }

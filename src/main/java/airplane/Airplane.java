@@ -9,6 +9,7 @@ import util.TaskLogger;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Exchanger;
 
 public class Airplane {
     private Body body;
@@ -42,6 +43,11 @@ public class Airplane {
             CentralUnit centralUnit = new CentralUnit(new Counter());
             AntiCollisionLight[] antiCollisionLights = new AntiCollisionLight[]{new AntiCollisionLight(), new AntiCollisionLight()};
 
+            // Task 7
+            Exchanger<String> radarProcessorExchanger = new Exchanger<>();
+            Processor processor = new Processor(radarProcessorExchanger);
+            Radar radar = new Radar(radarProcessorExchanger);
+
             // Task 4
             CyclicBarrier engineToTaxiBarrier = new CyclicBarrier(2, () -> TaskLogger.getLogger().info("Ready for taxi."));
             Engine[] engines = new Engine[]{new Engine(1, engineToTaxiBarrier), new Engine(2, engineToTaxiBarrier)};
@@ -67,7 +73,9 @@ public class Airplane {
                     antiCollisionLights,
                     entryDoors,
                     engines,
-                    landingGears);
+                    landingGears,
+                    radar,
+                    processor);
             Wing leftWing = new Wing(leftFlaps);
             Wing rightWing = new Wing(rightFlaps);
             return new Airplane(body, leftWing, rightWing);
