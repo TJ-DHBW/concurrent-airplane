@@ -7,7 +7,7 @@ import util.TaskLogger;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-public class Sensor extends Thread {
+public class Sensor implements Runnable {
     private SensorStatus sensorStatus;
     private Semaphore semaphore;
     private CentralUnit centralUnit;
@@ -28,13 +28,12 @@ public class Sensor extends Thread {
         try {
             semaphore.acquire();
             TaskLogger.getLogger().info("Sensor " + id + " has registered");
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(2);
             int statusInt = Configuration.instance.r.nextInt(3);
             sensorStatus = SensorStatus.values()[statusInt];
             centralUnit.readValueFromSensor(this);
             TaskLogger.getLogger().info("Sensor " + id + " sent message to central unit");
             semaphore.release();
-            TaskLogger.getLogger().info("Sensor " + id + " has deregistered");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

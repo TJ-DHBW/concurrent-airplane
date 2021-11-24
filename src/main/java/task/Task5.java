@@ -3,6 +3,8 @@ package task;
 import airplane.Airplane;
 import util.TaskLogger;
 
+import java.util.concurrent.TimeUnit;
+
 public class Task5 {
 
     /*
@@ -17,11 +19,11 @@ public class Task5 {
 
     public static void run() throws InterruptedException {
         Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
-        Thread thread = new Thread(airplane.getBody().getCentralUnit());
-        thread.run();
-        while (airplane.getBody().getCentralUnit().getSemaphore().hasQueuedThreads() || airplane.getBody().getCentralUnit().getSemaphore().availablePermits() != 100) {
 
-        }
+        Thread thread = new Thread(airplane.getBody().getCentralUnit());
+        thread.start();
+
+        TimeUnit.SECONDS.sleep(11);
         TaskLogger.getLogger().info("In total: Normal->" + airplane.getBody().getCentralUnit().getNormalNumber()
                 + " Warnings->" + airplane.getBody().getCentralUnit().getWarningNumber()
                 + " Alarms-> " + airplane.getBody().getCentralUnit().getAlarmNumber());

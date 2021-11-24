@@ -3,13 +3,12 @@ package airplane.body;
 import airplane.Airplane;
 import airplane.actors.Counter;
 import airplane.body.sensor.Sensor;
-import util.TaskLogger;
 
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CentralUnit extends Thread {
+public class CentralUnit implements Runnable {
     private final Counter counter;
     private AtomicInteger countMessageNormal = new AtomicInteger();
     private AtomicInteger countMessageWarning = new AtomicInteger();
@@ -38,12 +37,6 @@ public class CentralUnit extends Thread {
             case warning:
                 warningMessage();
                 break;
-        }
-        numberOfMessages++;
-        if (numberOfMessages == 500) {
-            TaskLogger.getLogger().info("In total: Normal->" + getNormalNumber()
-                    + " Warnings->" + getWarningNumber()
-                    + " Alarms-> " + getAlarmNumber());
         }
     }
 
