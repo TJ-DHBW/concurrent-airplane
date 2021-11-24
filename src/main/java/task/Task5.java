@@ -1,5 +1,9 @@
 package task;
 
+import airplane.Airplane;
+
+import java.util.concurrent.Semaphore;
+
 public class Task5 {
 
     /*
@@ -13,6 +17,9 @@ public class Task5 {
      */
 
     public static void run() {
-        // TODO Task5
+        Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
+
+        Semaphore semaphore = new Semaphore(100);
+        airplane.getBody().getCentralUnit().setSemaphore(semaphore);
     }
 }

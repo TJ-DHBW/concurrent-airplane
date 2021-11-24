@@ -1,5 +1,11 @@
 package task;
 
+import airplane.Airplane;
+import airplane.body.Engine;
+
+import java.util.ArrayList;
+import java.util.concurrent.Phaser;
+
 public class Task8 {
 
     /*
@@ -12,6 +18,26 @@ public class Task8 {
      */
 
     public static void run() {
-        // TODO Task8
+        Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
+        ArrayList<Engine> engines = airplane.getBody().getEngines();
+        Phaser phaser = new Phaser();
+
+        Thread thread01 = new Thread(() -> {
+            try {
+                engines.get(0).synchronisedTakeOff(phaser);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread thread02 = new Thread(() -> {
+            try {
+                engines.get(1).synchronisedTakeOff(phaser);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        thread01.start();
+        thread02.start();
     }
 }
