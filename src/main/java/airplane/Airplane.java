@@ -39,6 +39,7 @@ public class Airplane {
         this.wings = wings;
     }
 
+    // TODO Make the array initializers more beautiful.
     public static class AirbusA350_900Factory {
         public static Airplane buildAirplane() {
             Cabin cabin = new Cabin.AirbusA350_900CabinFactory().buildCabin();

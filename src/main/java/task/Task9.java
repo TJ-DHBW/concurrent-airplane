@@ -1,5 +1,10 @@
 package task;
 
+import airplane.Airplane;
+import airplane.BoardingClass;
+import airplane.actors.DEA;
+import airplane.actors.HumanoidRobotWithFaceRecognition;
+
 public class Task9 {
 
     /*
@@ -16,6 +21,15 @@ public class Task9 {
      */
 
     public static void run() {
-        // TODO Task9
+        Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
+        BoardingClass.bordAirplane(airplane);
+
+        HumanoidRobotWithFaceRecognition[] robots = {new HumanoidRobotWithFaceRecognition(1),
+                new HumanoidRobotWithFaceRecognition(2),
+                new HumanoidRobotWithFaceRecognition(3)};
+        DEA dea = new DEA(robots);
+
+        dea.searchAirplaneForElChapo(airplane);
+        System.out.println("Im done...");
     }
 }
