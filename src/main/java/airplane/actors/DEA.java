@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 public class DEA {
     private final ArrayList<HumanoidRobotWithFaceRecognition> robots = new ArrayList<>();
@@ -21,6 +22,14 @@ public class DEA {
     public DEA(HumanoidRobotWithFaceRecognition[] robots) {
         this.isElChapoOnBoard = false;
         this.robots.addAll(Arrays.asList(robots));
+    }
+
+    private static boolean allDone(List<Future<Boolean>> futures) {
+        boolean ret = true;
+        for (Future<Boolean> future : futures) {
+            ret &= future.isDone();
+        }
+        return ret;
     }
 
     public void searchAirplaneForElChapo(Airplane airplane) {
@@ -43,11 +52,17 @@ public class DEA {
         }
         TaskLogger.getLogger().info("DEA configured the robots to search the airplane.");
 
+
         ExecutorService executorservice = Executors.newFixedThreadPool(5);
         try {
-            TaskLogger.getLogger().info("DEA is starting the robots.");
-            List<Future<Boolean>> futures = executorservice.invokeAll(configuredRobots);
+            List<Future<Boolean>> futures = configuredRobots.stream().map(executorservice::submit).collect(Collectors.toList());
+            TaskLogger.getLogger().info("DEA has started the robots.");
 
+            while (!allDone(futures)) {
+                TaskLogger.getLogger().info("Not all robots are done. Waiting");
+                Thread.sleep(1000);
+            }
+            TaskLogger.getLogger().info("All robots done. Updating \"isElChapoOnBoard\".");
 
             for (Future<Boolean> future : futures) {
                 this.isElChapoOnBoard |= future.get();
