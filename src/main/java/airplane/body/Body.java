@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Body {
-    private Cabin cabin;
-    private CentralUnit centralUnit;
-    private ArrayList<AntiCollisionLight> antiCollisionLights = new ArrayList<>();
+    private final Cabin cabin;
+    private final CentralUnit centralUnit;
+    private final ArrayList<AntiCollisionLight> antiCollisionLights = new ArrayList<>();
     private final ArrayList<Engine> engines = new ArrayList<>();
     private final ArrayList<EntryDoor> entryDoors = new ArrayList<>();
     private final ArrayList<LandingGear> landingGears = new ArrayList<>();
     private final Radar radar;
     private final Processor processor;
-    private ArrayList<Sensor> sensors = new ArrayList<>();
+    private final ArrayList<Sensor> sensors;
 
     public Body(Cabin cabin, CentralUnit centralUnit, AntiCollisionLight[] antiCollisionLights, EntryDoor[] entryDoors, Engine[] engines, LandingGear[] landingGears, Radar radar, Processor processor, ArrayList<Sensor> sensors) {
         this.cabin = cabin;

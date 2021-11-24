@@ -30,6 +30,5 @@ public class Task9 {
         DEA dea = new DEA(robots);
 
         dea.searchAirplaneForElChapo(airplane);
-        System.out.println("Im done...");
     }
 }

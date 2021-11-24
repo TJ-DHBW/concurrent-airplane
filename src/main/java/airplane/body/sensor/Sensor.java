@@ -34,6 +34,7 @@ public class Sensor implements Runnable {
             centralUnit.readValueFromSensor(this);
             TaskLogger.getLogger().info("Sensor " + id + " sent message to central unit");
             semaphore.release();
+            TaskLogger.getLogger().info("Sensor " + id + " has unregistered");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

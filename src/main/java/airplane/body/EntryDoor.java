@@ -7,7 +7,7 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 public class EntryDoor implements Runnable {
-    private CyclicBarrier cyclicBarrier;
+    private final CyclicBarrier cyclicBarrier;
     private boolean isOpen = true;
     private final int id;
 

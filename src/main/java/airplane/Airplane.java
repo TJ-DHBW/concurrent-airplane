@@ -14,8 +14,8 @@ import java.util.concurrent.Exchanger;
 import java.util.concurrent.Semaphore;
 
 public class Airplane {
-    private Body body;
-    private ArrayList<Wing> wings = new ArrayList<>();
+    private final Body body;
+    private final ArrayList<Wing> wings = new ArrayList<>();
 
     public Airplane(Body body, Wing leftWing, Wing rightWing) {
         this.body = body;
@@ -49,7 +49,7 @@ public class Airplane {
 
             // Task5
             Semaphore semaphore = new Semaphore(100);
-            CentralUnit centralUnit = new CentralUnit(new Counter(), semaphore);
+            CentralUnit centralUnit = new CentralUnit(new Counter());
             ArrayList<Sensor> sensors = new ArrayList<>();
             for (int i = 0; i < 500; i++) {
                 sensors.add(new Sensor(i + 1, semaphore, centralUnit));

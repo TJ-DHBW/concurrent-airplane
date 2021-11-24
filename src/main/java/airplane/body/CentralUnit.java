@@ -5,7 +5,6 @@ import airplane.actors.Counter;
 import airplane.body.sensor.Sensor;
 
 import java.util.ArrayList;
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CentralUnit implements Runnable {
@@ -13,12 +12,10 @@ public class CentralUnit implements Runnable {
     private final AtomicInteger countMessageNormal = new AtomicInteger();
     private final AtomicInteger countMessageWarning = new AtomicInteger();
     private final AtomicInteger countMessageAlarm = new AtomicInteger();
-    private final Semaphore semaphore;
     private Airplane airplane;
 
-    public CentralUnit(Counter counter, Semaphore semaphore) {
+    public CentralUnit(Counter counter) {
         this.counter = counter;
-        this.semaphore = semaphore;
     }
 
     public Counter getCounter() {

@@ -3,7 +3,7 @@ package airplane.body;
 import java.util.ArrayList;
 
 public class Cabin {
-    private ArrayList<Row> rows;
+    private final ArrayList<Row> rows;
 
     public Cabin(ArrayList<Row> rows) {
         this.rows = rows;
@@ -11,10 +11,6 @@ public class Cabin {
 
     public ArrayList<Row> getRows() {
         return rows;
-    }
-
-    public void setRows(ArrayList<Row> rows) {
-        this.rows = rows;
     }
 
     public static class AirbusA350_900CabinFactory {

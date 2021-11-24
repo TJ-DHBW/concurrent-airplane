@@ -3,10 +3,10 @@ package airplane.body;
 import airplane.actors.Passenger;
 
 public class Seat {
-    private SeatClass seatClass;
+    private final SeatClass seatClass;
     private Passenger passenger;
-    private String seatLetter;
-    private int rowNumber;
+    private final String seatLetter;
+    private final int rowNumber;
 
     public Seat(SeatClass seatClass, String seatLetter, int rowNumber) {
         this.seatClass = seatClass;
@@ -22,4 +22,7 @@ public class Seat {
         this.passenger = passenger;
     }
 
+    public SeatClass getSeatClass() {
+        return seatClass;
+    }
 }

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class Engine implements Runnable {
     private final int id;
     private boolean hasStarted = false;
-    private CyclicBarrier cyclicBarrier;
+    private final CyclicBarrier cyclicBarrier;
     private int rotationSpeed;
     private final int rotationSpeedReadyForDeparture = 500;
     private final int rotationSpeedTrustSet = 2400;
