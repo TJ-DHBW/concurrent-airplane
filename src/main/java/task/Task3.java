@@ -17,7 +17,6 @@ public class Task3 {
      */
 
     public static void run() throws InterruptedException {
-        // TODO Task3
         StorageSite site = new StorageSite(250);
 
         TaskLogger.getLogger().info("Starting CargoRobots.");

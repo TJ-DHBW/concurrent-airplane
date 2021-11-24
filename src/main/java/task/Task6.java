@@ -17,7 +17,7 @@ public class Task6 {
     public static void run() {
         Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
 
-        airplane.getWings().forEach(wing -> wing.getFlaps().forEach(Flap::run));
+        airplane.getWings().forEach(wing -> wing.getFlaps().forEach(Flap::start));
         airplane.getBody().getLandingGears().forEach(Thread::start);
     }
 }

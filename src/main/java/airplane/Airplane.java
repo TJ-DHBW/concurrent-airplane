@@ -34,15 +34,15 @@ public class Airplane {
     public static class AirbusA350_900Factory {
         public static Airplane buildAirplane() {
             Cabin cabin = new Cabin.AirbusA350_900CabinFactory().buildCabin();
-            AntiCollisionLight[] antiCollisionLights = new AntiCollisionLight[]{new AntiCollisionLight(), new AntiCollisionLight()};
+            AntiCollisionLight[] antiCollisionLights = {new AntiCollisionLight(), new AntiCollisionLight()};
 
             // Task 4
             CyclicBarrier engineToTaxiBarrier = new CyclicBarrier(2, () -> TaskLogger.getLogger().info("Ready for taxi."));
-            Engine[] engines = new Engine[]{new Engine(1, engineToTaxiBarrier), new Engine(2, engineToTaxiBarrier)};
+            Engine[] engines = {new Engine(1, engineToTaxiBarrier), new Engine(2, engineToTaxiBarrier)};
             CyclicBarrier doorToEngineBarrier = new CyclicBarrier(4, () -> {
                 for (Engine engine : engines) new Thread(engine).start();
             });
-            EntryDoor[] entryDoors = new EntryDoor[]{new EntryDoor(1, doorToEngineBarrier),
+            EntryDoor[] entryDoors = {new EntryDoor(1, doorToEngineBarrier),
                     new EntryDoor(2, doorToEngineBarrier),
                     new EntryDoor(3, doorToEngineBarrier),
                     new EntryDoor(4, doorToEngineBarrier)};
@@ -57,11 +57,11 @@ public class Airplane {
 
             // Task6
             CountDownLatch landingGearToFlapLatch = new CountDownLatch(3);
-            LandingGear[] landingGears = new LandingGear[]{new LandingGear(landingGearToFlapLatch),
+            LandingGear[] landingGears = {new LandingGear(landingGearToFlapLatch),
                     new LandingGear(landingGearToFlapLatch),
                     new LandingGear(landingGearToFlapLatch)};
-            Flap[] leftFlaps = new Flap[]{new Flap(landingGearToFlapLatch), new Flap(landingGearToFlapLatch)};
-            Flap[] rightFlaps = new Flap[]{new Flap(landingGearToFlapLatch), new Flap(landingGearToFlapLatch)};
+            Flap[] leftFlaps = {new Flap(landingGearToFlapLatch), new Flap(landingGearToFlapLatch)};
+            Flap[] rightFlaps = {new Flap(landingGearToFlapLatch), new Flap(landingGearToFlapLatch)};
 
             // Task7
             Exchanger<String> radarProcessorExchanger = new Exchanger<>();
