@@ -1,28 +1,52 @@
 package airplane.body;
 
+import airplane.Airplane;
 import airplane.actors.Counter;
+import airplane.body.sensor.Sensor;
+import util.TaskLogger;
 
+import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CentralUnit {
+public class CentralUnit extends Thread {
     private final Counter counter;
     private AtomicInteger countMessageNormal = new AtomicInteger();
     private AtomicInteger countMessageWarning = new AtomicInteger();
     private AtomicInteger countMessageAlarm = new AtomicInteger();
     private Semaphore semaphore;
+    private int numberOfMessages = 0;
+    private Airplane airplane;
 
-    public CentralUnit(Counter counter) {
+    public CentralUnit(Counter counter, Semaphore semaphore) {
         this.counter = counter;
+        this.semaphore = semaphore;
     }
 
     public Counter getCounter() {
         return counter;
     }
 
-    public void setSemaphore(Semaphore semaphore) {
-        this.semaphore = semaphore;
+    public void readValueFromSensor(Sensor sensor) {
+        switch (sensor.getSensorStatus()) {
+            case alarm:
+                alarmMessage();
+                break;
+            case normal:
+                normalMessage();
+                break;
+            case warning:
+                warningMessage();
+                break;
+        }
+        numberOfMessages++;
+        if (numberOfMessages == 500) {
+            TaskLogger.getLogger().info("In total: Normal->" + getNormalNumber()
+                    + " Warnings->" + getWarningNumber()
+                    + " Alarms-> " + getAlarmNumber());
+        }
     }
+
 
     public void normalMessage() {
         countMessageNormal.incrementAndGet();
@@ -34,5 +58,35 @@ public class CentralUnit {
 
     public void alarmMessage() {
         countMessageAlarm.incrementAndGet();
+    }
+
+    public int getNormalNumber() {
+        return countMessageNormal.get();
+    }
+
+    public int getWarningNumber() {
+        return countMessageWarning.get();
+    }
+
+    public int getAlarmNumber() {
+        return countMessageAlarm.get();
+    }
+
+
+    public void setAirplane(Airplane airplane) {
+        this.airplane = airplane;
+    }
+
+    public Semaphore getSemaphore() {
+        return semaphore;
+    }
+
+    @Override
+    public void run() {
+        ArrayList<Sensor> sensors = airplane.getBody().getSensors();
+        for (Sensor sensor : sensors) {
+            Thread thread = new Thread(sensor);
+            thread.start();
+        }
     }
 }

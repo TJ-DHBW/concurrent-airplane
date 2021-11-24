@@ -1,5 +1,7 @@
 package airplane.body;
 
+import airplane.body.sensor.Sensor;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,8 +14,9 @@ public class Body {
     private ArrayList<LandingGear> landingGears = new ArrayList<>();
     private Radar radar;
     private Processor processor;
+    private ArrayList<Sensor> sensors = new ArrayList<>();
 
-    public Body(Cabin cabin, CentralUnit centralUnit, AntiCollisionLight[] antiCollisionLights, EntryDoor[] entryDoors, Engine[] engines, LandingGear[] landingGears, Radar radar, Processor processor) {
+    public Body(Cabin cabin, CentralUnit centralUnit, AntiCollisionLight[] antiCollisionLights, EntryDoor[] entryDoors, Engine[] engines, LandingGear[] landingGears, Radar radar, Processor processor, ArrayList<Sensor> sensors) {
         this.cabin = cabin;
         this.centralUnit = centralUnit;
         this.antiCollisionLights.addAll(Arrays.asList(antiCollisionLights));
@@ -22,6 +25,7 @@ public class Body {
         this.landingGears.addAll(Arrays.asList(landingGears));
         this.radar = radar;
         this.processor = processor;
+        this.sensors = sensors;
     }
 
 
@@ -67,5 +71,9 @@ public class Body {
 
     public Processor getProcessor() {
         return processor;
+    }
+
+    public ArrayList<Sensor> getSensors() {
+        return sensors;
     }
 }

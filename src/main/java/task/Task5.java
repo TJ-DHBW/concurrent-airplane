@@ -1,8 +1,7 @@
 package task;
 
 import airplane.Airplane;
-
-import java.util.concurrent.Semaphore;
+import util.TaskLogger;
 
 public class Task5 {
 
@@ -16,10 +15,15 @@ public class Task5 {
     jedem Messzyklus aktualisiert werden.
      */
 
-    public static void run() {
+    public static void run() throws InterruptedException {
         Airplane airplane = Airplane.AirbusA350_900Factory.buildAirplane();
+        Thread thread = new Thread(airplane.getBody().getCentralUnit());
+        thread.run();
+        while (airplane.getBody().getCentralUnit().getSemaphore().hasQueuedThreads() || airplane.getBody().getCentralUnit().getSemaphore().availablePermits() != 100) {
 
-        Semaphore semaphore = new Semaphore(100);
-        airplane.getBody().getCentralUnit().setSemaphore(semaphore);
+        }
+        TaskLogger.getLogger().info("In total: Normal->" + airplane.getBody().getCentralUnit().getNormalNumber()
+                + " Warnings->" + airplane.getBody().getCentralUnit().getWarningNumber()
+                + " Alarms-> " + airplane.getBody().getCentralUnit().getAlarmNumber());
     }
 }

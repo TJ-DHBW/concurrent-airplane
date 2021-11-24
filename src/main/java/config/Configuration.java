@@ -8,5 +8,5 @@ public enum Configuration {
     instance;
 
     public final Random r = new Random();
-    public final TaskNumber taskToRun = TaskNumber.TASK8;
+    public final TaskNumber taskToRun = TaskNumber.TASK5;
 }
